@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"go-ecommerce-api/config"
 	"go-ecommerce-api/database"
 	"log"
 	"os"
@@ -11,13 +12,13 @@ import (
 )
 
 func main() {
-	// Load environment variables from .env file
+	// Load environment variables from .env file or use  config.LoadEnvVariables()
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
-
-	database.ConnectDatabase() // Connect to the database
+	// Connect to the database
+	database.ConnectDatabase() 
 
 	// Initialize Gin router
 	r := gin.Default()

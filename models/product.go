@@ -11,4 +11,7 @@ type Product struct {
 	Description string  `json:"description"`
 	Price       float64 `json:"price" gorm:"not null"`
 	Stock       int     `json:"stock" gorm:"not null"`
+
+	Orders      []Order  `gorm:"foreignKey:ProductID"` // One Product can be in multiple Orders
+ 
 }
