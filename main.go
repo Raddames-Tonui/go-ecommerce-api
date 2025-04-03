@@ -17,17 +17,20 @@ func main() {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
+
 	// Connect to the database
 	database.ConnectDatabase() 
 
 	// Initialize Gin router
-	r := gin.Default()
+	router := gin.Default()
 
 	// Setup routes
-	routes.SetupUserRoutes(r) // User routes
+	routes.SetupUserRoutes(router) // User routes
+	routes.SetupOrderRoutes(router) // Order routes
+	routes.SetupProductRoutes(router) // Product routes
 
 	// Define a simple test route
-	r.GET("/", func(c *gin.Context) {
+	router.GET("/", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "Welcome to the E-Commerce API",
 		})
@@ -40,5 +43,5 @@ func main() {
 	}
 
 	fmt.Println("Server running on port", port)
-	r.Run(":" + port) // Start the server
+	router.Run(":" + port) // Start the server
 }
