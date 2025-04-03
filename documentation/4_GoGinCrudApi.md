@@ -149,10 +149,10 @@ func main() {
 	database.ConnectDB()
 
 	// Initialize router
-	r := gin.Default()
+	route := gin.Default()
 
 	// Setup routes
-	routes.SetupUserRoutes(r)
+	routes.SetupUserRoutes(route)
 
 	// Start the server
 	port := os.Getenv("PORT")
@@ -160,7 +160,7 @@ func main() {
 		port = "8080"
 	}
 	fmt.Println("Server running on port", port)
-	r.Run(":" + port)
+	route.Run(":" + port)
 }
 ```
 
@@ -181,7 +181,7 @@ func main() {
 **Create User**
 
 ```json
-POST /users/
+POST http://localhost:8080/users/
 Content-Type: application/json
 
 {
@@ -207,4 +207,3 @@ Content-Type: application/json
 🔹 **JWT Authentication** – Secure endpoints using JWT tokens. 🔹 **Rate Limiting** – Prevent excessive requests to API. 🔹 **Validation Middleware** – Ensure correct data formats in requests. 🔹 **Logging Middleware** – Monitor API activity. 🔹 **CORS Middleware** – Allow cross-origin requests if needed.
 
 🚀 **Next Steps** 🔹 Add authentication using JWT 🔹 Implement Product and Order routes 🔹 Add Unit Tests for API endpoints
-

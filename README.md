@@ -50,3 +50,15 @@ This tutorial provides a step-by-step guide to building an e-commerce API using 
 ### Connect with Me
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge)](https://www.linkedin.com/in/raddames-tonui-01a751277/)
 
+
+URL Shortener – Learn routing, database storage, and hashing techniques.
+
+Blog API – Practice CRUD operations, authentication, and relational databases.
+
+Chat Application (WebSockets) – Explore real-time communication.
+
+E-commerce API – Implement authentication, payments, and order management.
+
+Weather API Fetcher – Work with external APIs, JSON parsing, and caching.
+
+Expense Tracker – Store user expenses, categorize them, and generate reports.
