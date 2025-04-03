@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"go-ecommerce-api/config"
 	"go-ecommerce-api/database"
+	"go-ecommerce-api/routes"
 	"log"
 	"os"
 
@@ -22,6 +22,9 @@ func main() {
 
 	// Initialize Gin router
 	r := gin.Default()
+
+	// Setup routes
+	routes.SetupUserRoutes(r) // User routes
 
 	// Define a simple test route
 	r.GET("/", func(c *gin.Context) {

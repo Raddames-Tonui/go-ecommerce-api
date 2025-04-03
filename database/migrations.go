@@ -12,7 +12,10 @@ import (
 	"gorm.io/gorm"
 )
 
-func MigrateDb () *gorm.DB {
+var DB2 *gorm.DB // Global database variable
+
+// MigrateDb initializes the database and runs migrations
+func MigrateDb() {
 	// Load environment variables from .env file
 	err := godotenv.Load()
 	if err != nil {
@@ -26,7 +29,7 @@ func MigrateDb () *gorm.DB {
 		os.Getenv("DB_USER"),
 		os.Getenv("DB_PASSWORD"),
 		os.Getenv("DB_NAME"),
-		os.Getenv("DB_PORT"), 
+		os.Getenv("DB_PORT"),
 	)
 
 	// Connect to the database
@@ -34,10 +37,12 @@ func MigrateDb () *gorm.DB {
 	if err != nil {
 		log.Fatal("Failed to connect to database: ", err)
 	}
-	
+
 	fmt.Println("Database connected successfully!")
+	DB2 = db // Store the connection globally
+
 	// Migrate the schema
-	err = db.AutoMigrate(
+	err = DB2.AutoMigrate(
 		&models.User{},
 		&models.Product{},
 		&models.Order{},
@@ -45,6 +50,10 @@ func MigrateDb () *gorm.DB {
 	if err != nil {
 		log.Fatal("Failed to migrate database: ", err)
 	}
-	fmt.Println("Database connected and migrated successfully!")
-	return db
+	fmt.Println("Database migrated successfully!")
+}
+
+// GetDB returns the global database instance
+func GetDataBase() *gorm.DB {
+	return DB2
 }

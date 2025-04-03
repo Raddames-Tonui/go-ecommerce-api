@@ -16,22 +16,20 @@ package database
 
 import (
 	"fmt"
+	"go-ecommerce-api/config"
 	"log"
 	"os"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
-	"github.com/joho/godotenv"
 )
 
 var DB *gorm.DB
 
+// ConnectDatabase initializes and connects to the database
 func ConnectDatabase() {
 	// Load environment variables
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
+	config.LoadEnvVariables()
 
 	// Build database connection string
 	dsn := fmt.Sprintf(
@@ -52,6 +50,12 @@ func ConnectDatabase() {
 	fmt.Println("Database connected successfully!")
 	DB = db
 }
+
+// GetDB returns the database instance
+func GetDB() *gorm.DB {
+	return DB
+}
+
 ```
 
 ### 2.2 Update `main.go` to Initialize the Database

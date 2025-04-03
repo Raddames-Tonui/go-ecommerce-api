@@ -12,6 +12,7 @@ import (
 
 var DB *gorm.DB
 
+// ConnectDatabase initializes and connects to the database
 func ConnectDatabase() {
 	// Load environment variables
 	config.LoadEnvVariables()
@@ -34,4 +35,9 @@ func ConnectDatabase() {
 
 	fmt.Println("Database connected successfully!")
 	DB = db
+}
+
+// GetDB returns the database instance
+func GetDB() *gorm.DB {
+	return DB
 }
